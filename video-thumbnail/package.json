@@ -1,0 +1,28 @@
+{
+  "name": "experiments-video-thumbnail",
+  "version": "0.0.1",
+  "description": "An experimental video-thumbnail 'plugin' using pure JavaScript.",
+  "public": false,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lewie9021/experiments.git"
+  },
+  "keywords": [
+    "video",
+    "thumbnail",
+    "experimental"
+  ],
+  "author": "Lewis Barnes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lewie9021/experiments/issues"
+  },
+  "homepage": "https://github.com/lewie9021/experiments#readme",
+  "dependencies": {
+    "express": "4.13.3"
+  }
+}
