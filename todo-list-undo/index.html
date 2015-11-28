@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Todo Appliaction (with undo)</title>
+        <script id="template-app" type="text/x-handlebars-template">
+            <h1>{{title}}</h1>
+            <ul class="todos">
+                {{#each todos}}
+                    <li>[{{#if done}}x{{else}} {{/if}}] {{todo}}</li>
+                {{/each}}
+            </ul>
+        </script>
+    </head>
+    <body>
+        <div id="app"></div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/immutable/3.7.5/immutable.js"></script>
+        <script type="text/javascript" src="main.js"></script>
+    </body>
+</html>
