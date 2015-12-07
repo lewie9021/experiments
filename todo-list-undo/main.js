@@ -39,6 +39,19 @@ function renderTodos() {
     });
 }
 
+function saveHistory() {
+    var historyIndex = parseInt($historySlider.value, 10);
+    
+    // Append the new state to the history array.
+    HISTORY = HISTORY
+        .slice(0, historyIndex + 1)
+        .concat(TODOS);
+
+    // Increment the length of the slider.
+    $historySlider.setAttribute("max", HISTORY.length - 1);
+    $historySlider.value = HISTORY.length - 1;
+}
+
 $historySlider.addEventListener("input", function(e) {
     var historyIndex = parseInt(e.target.value, 10);
     
@@ -56,19 +69,22 @@ $addTodo.addEventListener("click", function() {
     // Add the new todo.
     TODOS = TODOS.push(Immutable.Map({todo: value, done: false}));
 
-    var historyIndex = parseInt($historySlider.value, 10);
-    
-    // Append the new state to the history array.
-    HISTORY = HISTORY
-        .slice(0, historyIndex + 1)
-        .concat(TODOS);
-    
-    // Increment the length of the slider.
-    $historySlider.setAttribute("max", HISTORY.length - 1);
-    $historySlider.value = HISTORY.length - 1;
-    
+    saveHistory();
     renderTodos();
 
     // Clear the input
     $newTodo.value = "";
+});
+
+$app.addEventListener("click", function(e) {
+    var target = e.target;
+    var index = parseInt(target.dataset.index, 10);
+    
+    if (target.tagName !== "INPUT" || target.type !== "checkbox")
+        return;
+
+    TODOS = TODOS.setIn([index, "done"], target.checked);
+
+    saveHistory();
+    renderTodos();
 });

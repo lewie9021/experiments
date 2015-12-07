@@ -19,7 +19,10 @@
         </script>
         <script id="template-todos" type="text/x-handlebars-template">
             {{#each todos}}
-                <li>[{{#if done}}x{{else}} {{/if}}] {{todo}}</li>
+                <li>
+                    <input type="checkbox"{{#if done}} checked{{/if}} data-index="{{@index}}" />
+                    <span>{{todo}}</span>
+                </li>
             {{/each}}
         </script>
     </head>
