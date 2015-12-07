@@ -5,11 +5,22 @@
         <title>Todo Appliaction (with undo)</title>
         <script id="template-app" type="text/x-handlebars-template">
             <h1>{{title}}</h1>
-            <ul class="todos">
-                {{#each todos}}
-                    <li>[{{#if done}}x{{else}} {{/if}}] {{todo}}</li>
-                {{/each}}
-            </ul>
+            
+            <input type="range" id="history-slider" value="0" min="0" max="0" step="1" />
+            <br/>
+            <br/>
+            
+            <div>
+                <input type="text" id="new-todo" value="" />
+                <button id="add-todo">Add todo</button>
+            </div>
+            
+            <ul id="todos"></ul>
+        </script>
+        <script id="template-todos" type="text/x-handlebars-template">
+            {{#each todos}}
+                <li>[{{#if done}}x{{else}} {{/if}}] {{todo}}</li>
+            {{/each}}
         </script>
     </head>
     <body>
