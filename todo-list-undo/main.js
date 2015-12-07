@@ -40,7 +40,9 @@ function renderTodos() {
 }
 
 $historySlider.addEventListener("input", function(e) {
-    TODOS = HISTORY[e.target.value];
+    var historyIndex = parseInt(e.target.value, 10);
+    
+    TODOS = HISTORY[historyIndex];
     
     renderTodos();
 });
@@ -50,13 +52,17 @@ $addTodo.addEventListener("click", function() {
 
     if (!value.length)
         return;
-
+    
     // Add the new todo.
     TODOS = TODOS.push(Immutable.Map({todo: value, done: false}));
 
+    var historyIndex = parseInt($historySlider.value, 10);
+    
     // Append the new state to the history array.
-    HISTORY.push(TODOS);
-
+    HISTORY = HISTORY
+        .slice(0, historyIndex + 1)
+        .concat(TODOS);
+    
     // Increment the length of the slider.
     $historySlider.setAttribute("max", HISTORY.length - 1);
     $historySlider.value = HISTORY.length - 1;
@@ -66,6 +72,3 @@ $addTodo.addEventListener("click", function() {
     // Clear the input
     $newTodo.value = "";
 });
-
-
-
