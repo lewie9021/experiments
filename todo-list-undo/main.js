@@ -25,7 +25,7 @@ var HISTORY = [TODOS];
 var $app = document.getElementById("app");
 
 $app.innerHTML = render("app", {
-    title: "Example Todo Application"
+    title: "Todo Application (with undo)"
 });
 
 var $historySlider = document.getElementById("history-slider");
