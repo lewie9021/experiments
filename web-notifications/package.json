@@ -1,0 +1,29 @@
+{
+  "name": "experiments-web-notifications",
+  "version": "0.0.1",
+  "description": "An experimental pomodoro timer to exercise web notifications.",
+  "public": false,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lewie9021/experiments.git"
+  },
+  "keywords": [
+    "notifications",
+    "pomodoro",
+    "timer",
+    "webapp"
+  ],
+  "author": "Lewis Barnes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lewie9021/experiments/issues"
+  },
+  "homepage": "https://github.com/lewie9021/experiments#readme",
+  "dependencies": {
+    "express": "4.13.3"
+  }
+}

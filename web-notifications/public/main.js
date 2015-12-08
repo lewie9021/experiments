@@ -1,6 +1,24 @@
+var $app = document.getElementById("app");
 var $timer = document.getElementById("timer");
+
 var count = 1500;
 var interval;
+
+// Request permission to use the Notification API.
+Notification.requestPermission();
+
+$app.addEventListener("click", function(e) {
+    var target = e.target;
+
+    if (target.tagName !== "BUTTON")
+        return;
+
+    switch (target.id) {
+        case "start": startTimer(); break;
+        case "stop": stopTimer(); break;
+        case "reset": stopTimer(true); break;
+    }
+});
 
 function convertCounToTime(count) {
     var minutes = Math.floor(count / 60);
@@ -17,13 +35,11 @@ function startTimer() {
     interval = setInterval(function() {
         $timer.innerHTML = convertCounToTime(count);
 
-        if (count == 0) {
-            stopTimer();
-            
-            return notifyUser();
-        }
+        if (count > 0)
+            return count -= 1;
         
-        count -= 1;
+        stopTimer();
+        notifyUser();
     }, 1000);
 }
 
@@ -35,20 +51,11 @@ function stopTimer(reset) {
 }
 
 function notifyUser() {
-
-
-    
-}
-
-document.getElementById("app").addEventListener("click", function(e) {
-    var target = e.target;
-
-    if (target.tagName !== "BUTTON")
+    if (Notification.permission !== "granted")
         return;
 
-    switch (target.id) {
-        case "start": startTimer(); break;
-        case "stop": stopTimer(); break;
-        case "reset": stopTimer(true); break;
-    }
-});
+    new Notification("Pomodoro Timer", {
+        body: "Your time is up!",
+        icon: "timer-icon.png"
+    });
+}
